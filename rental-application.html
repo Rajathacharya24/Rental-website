@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Application</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+body{
+
+    background-image: url(pexels-emrah-nas-782819361-28823234.jpg);
+}
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <ul>
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="#"><b>About</b></a></li>
+                <li><a href="#"><b>Services</b></a></li>
+                <li><a href="#"><b>Contact</b></a></li>
+            </nav>
+        </ul>
+    </div>
+
+    <div class="rental-form-section">
+        <div class="rental-form-container">
+            <h2>Rental Application Form</h2>
+            <div class="selected-property">
+                <h3>Selected Property: <span id="propertyName">Loading...</span></h3>
+                <p id="propertyPrice"></p>
+            </div>
+            <form class="rental-form" id="rentalForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="moveIn">Desired Move-in Date</label>
+                        <input type="date" id="moveIn" name="moveIn" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="occupants">Number of Occupants</label>
+                        <input type="number" id="occupants" name="occupants" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="income">Monthly Income</label>
+                        <input type="number" id="income" name="income" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your rental needs..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get property details from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyName = urlParams.get('name');
+        const propertyPrice = urlParams.get('price');
+
+        // Update the property details in the form
+        document.getElementById('propertyName').textContent = propertyName || 'Not Selected';
+        document.getElementById('propertyPrice').textContent = propertyPrice ? `Price: ${propertyPrice}` : '';
+
+        // Handle form submission
+        document.getElementById('rentalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Application submitted successfully! We will contact you soon.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html> 
